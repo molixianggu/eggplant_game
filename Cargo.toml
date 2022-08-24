@@ -1,8 +1,8 @@
 [package]
-name = "bevy_game" # ToDo
+name = "eggplant_game"
 version = "0.1.0"
 publish = false
-authors = ["Niklas Eicker <git@nikl.me>"] # ToDo: you are the author ;)
+authors = ["molixianggu@outlook.com"]
 edition = "2021"
 
 [profile.dev.package."*"]
@@ -21,21 +21,37 @@ default = [
     "bevy/render",
     "bevy/png",
     "bevy/x11",
-    "bevy_kira_audio/ogg"
+    "bevy_kira_audio/ogg",
 ]
 
-dev = [
-    "bevy/dynamic",
-]
+dev = ["bevy/dynamic"]
 
 [dependencies]
-bevy = { version = "0.7", default-features = false }
-bevy_kira_audio = { version = "0.10" }
-bevy_asset_loader = { version = "0.11" }
-rand = "0.8.3"
+
+tracing = "0.1.35"
+
+serde = { version = "1.0.143", features = ["derive"] }
+
+serde_json = { version = "1.0.83" }
+
+bevy = { version = "0.8.0", default-features = false, features = [
+    "bmp",
+    "jpeg",
+] }
+bevy_kira_audio = { version = "0.11.0" }
+bevy_asset_loader = { version = "0.12.0", features = ["2d"] }
+ron = { version = "^0.7" }
+rand = "0.8.5"
+bevy_rapier2d = { version = "^0.16.0", features = [
+    "serde-serialize",
+    "enhanced-determinism",
+    "debug-render",
+] }
+
+reflect = "0.0.9"
 
 [target.'cfg(target_os = "linux")'.dependencies]
-winit = { version = "0.25", features=["x11"]}
+winit = { version = "0.26.1", features = ["x11"] }
 
 [build-dependencies]
 embed-resource = "1.4"
